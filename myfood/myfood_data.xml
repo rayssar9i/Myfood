@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="25.0.2" class="java.beans.XMLDecoder">
+ <object class="myfood.persistence.SistemaData" id="SistemaData0">
+  <void property="empresas">
+   <void method="put">
+    <int>1</int>
+    <object class="myfood.model.Empresa">
+     <void property="donoId">
+      <int>1</int>
+     </void>
+     <void property="endereco">
+      <string>Rua Segura N 987</string>
+     </void>
+     <void property="id">
+      <int>1</int>
+     </void>
+     <void property="nome">
+      <string>Sorveteria do Roberto</string>
+     </void>
+     <void property="tipoCozinha">
+      <string>brasileira</string>
+     </void>
+     <void property="tipoEmpresa">
+      <string>restaurante</string>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <int>2</int>
+    <object class="myfood.model.Empresa">
+     <void property="donoId">
+      <int>1</int>
+     </void>
+     <void property="endereco">
+      <string>Rua Segura N 987</string>
+     </void>
+     <void property="id">
+      <int>2</int>
+     </void>
+     <void property="nome">
+      <string>Pastelaria do Roberto</string>
+     </void>
+     <void property="tipoCozinha">
+      <string>brasileira</string>
+     </void>
+     <void property="tipoEmpresa">
+      <string>restaurante</string>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="nextEmpresaId">
+   <int>3</int>
+  </void>
+  <void property="nextPedidoNum">
+   <int>4</int>
+  </void>
+  <void property="nextProdutoId">
+   <int>5</int>
+  </void>
+  <void property="nextUserId">
+   <int>3</int>
+  </void>
+  <void property="pedidos">
+   <void method="put">
+    <int>1</int>
+    <object class="myfood.model.Pedido" id="Pedido0">
+     <void property="clienteId">
+      <int>2</int>
+     </void>
+     <void property="empresaId">
+      <int>1</int>
+     </void>
+     <void property="estado">
+      <string>preparando</string>
+     </void>
+     <void property="numero">
+      <int>1</int>
+     </void>
+     <void property="produtoIds">
+      <void method="add">
+       <int>1</int>
+      </void>
+      <void method="add">
+       <int>2</int>
+      </void>
+      <void method="add">
+       <int>3</int>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <int>2</int>
+    <object class="myfood.model.Pedido" id="Pedido1">
+     <void property="clienteId">
+      <int>2</int>
+     </void>
+     <void property="empresaId">
+      <int>2</int>
+     </void>
+     <void property="estado">
+      <string>aberto</string>
+     </void>
+     <void property="numero">
+      <int>2</int>
+     </void>
+     <void property="produtoIds">
+      <void method="add">
+       <int>4</int>
+      </void>
+      <void method="add">
+       <int>4</int>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <int>3</int>
+    <object class="myfood.model.Pedido">
+     <void property="clienteId">
+      <int>2</int>
+     </void>
+     <void property="empresaId">
+      <int>1</int>
+     </void>
+     <void property="estado">
+      <string>aberto</string>
+     </void>
+     <void property="numero">
+      <int>3</int>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="produtos">
+   <void method="put">
+    <int>1</int>
+    <object class="myfood.model.Produto">
+     <void property="categoria">
+      <string>alimento</string>
+     </void>
+     <void property="empresaId">
+      <int>1</int>
+     </void>
+     <void property="id">
+      <int>1</int>
+     </void>
+     <void property="nome">
+      <string>Sorvete morango</string>
+     </void>
+     <void property="valor">
+      <double>1.4</double>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <int>2</int>
+    <object class="myfood.model.Produto">
+     <void property="categoria">
+      <string>alimento</string>
+     </void>
+     <void property="empresaId">
+      <int>1</int>
+     </void>
+     <void property="id">
+      <int>2</int>
+     </void>
+     <void property="nome">
+      <string>Sorvete chocolate</string>
+     </void>
+     <void property="valor">
+      <double>1.4</double>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <int>3</int>
+    <object class="myfood.model.Produto">
+     <void property="categoria">
+      <string>bebida</string>
+     </void>
+     <void property="empresaId">
+      <int>1</int>
+     </void>
+     <void property="id">
+      <int>3</int>
+     </void>
+     <void property="nome">
+      <string>Refrigerante</string>
+     </void>
+     <void property="valor">
+      <double>3.4</double>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <int>4</int>
+    <object class="myfood.model.Produto">
+     <void property="categoria">
+      <string>alimento</string>
+     </void>
+     <void property="empresaId">
+      <int>2</int>
+     </void>
+     <void property="id">
+      <int>4</int>
+     </void>
+     <void property="nome">
+      <string>Pastel de queijo</string>
+     </void>
+     <void property="valor">
+      <double>5.0</double>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="usuarios">
+   <void method="put">
+    <int>1</int>
+    <object class="myfood.model.DonoEmpresa">
+     <void property="cpf">
+      <string>544.732.410-68</string>
+     </void>
+     <void property="email">
+      <string>roberto@ufal.com.br</string>
+     </void>
+     <void property="endereco">
+      <string>Rua Exemplo N 321</string>
+     </void>
+     <void property="id">
+      <int>1</int>
+     </void>
+     <void property="nome">
+      <string>RobertoDono</string>
+     </void>
+     <void property="senha">
+      <string>123senha</string>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <int>2</int>
+    <object class="myfood.model.Cliente">
+     <void property="email">
+      <string>carlos@ufal.com.br</string>
+     </void>
+     <void property="endereco">
+      <string>Rua Exemplo N 123</string>
+     </void>
+     <void property="id">
+      <int>2</int>
+     </void>
+     <void property="nome">
+      <string>Carlos</string>
+     </void>
+     <void property="senha">
+      <string>123senha</string>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>
