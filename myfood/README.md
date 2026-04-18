@@ -65,7 +65,7 @@ find src -name "*.java" > sources.txt
 javac -cp lib/easyaccept.jar -d bin @sources.txt
 
 # Rodar um teste individual
-java -cp bin:lib/easyaccept.jar easyaccept.EasyAccept myfood.facade.MyFoodFacade tests/us1_1.txt
+ java -cp "bin;lib/easyaccept.jar" easyaccept.EasyAccept myfood.facade.MyFoodFacade tests/us1_2.txt
 ```
 
 ## User Stories implementadas
