@@ -1,0 +1,55 @@
+# User Story 2 - Criação de Restaurantes
+# Permita que um usuário do tipo dono de empresa crie seu restaurante, mercado ou farmacia no MyFood.
+
+zerarSistema
+
+criarUsuario nome="Lucas" email="lucas@ufal.com.br"  senha="123senha" endereco="Rua Exemplo N 321"
+
+criarUsuario nome="CarlosDono" email="carlos@ufal.com.br"  senha="123senha" endereco="Rua Exemplo N 321" cpf="544.732.410-68"
+
+criarUsuario nome="RobertoDono" email="roberto@ufal.com.br" senha="123senha" endereco="Rua Exemplo N 321" cpf="544.732.410-68"
+
+id1=login email="lucas@ufal.com.br" senha="123senha"
+id2=login email="carlos@ufal.com.br" senha="123senha"
+id3=login email="roberto@ufal.com.br" senha="123senha"
+
+eid1=criarEmpresa tipoEmpresa="restaurante"  dono=${id2} nome="Pastelaria do Carlos" endereco="Rua Segura N 987" tipoCozinha="brasileira"
+
+eid2=criarEmpresa tipoEmpresa="restaurante"  dono=${id2} nome="Sushi do Carlos" endereco="Rua Legal N 654" tipoCozinha="japonesa"
+
+expectError "Empresa com esse nome ja existe" criarEmpresa tipoEmpresa="restaurante"  dono=${id3} nome="Pastelaria do Carlos" endereco="Rua Segura N 987" tipoCozinha="brasileira"
+
+expectError "Proibido cadastrar duas empresas com o mesmo nome e local" criarEmpresa tipoEmpresa="restaurante"  dono=${id2} nome="Pastelaria do Carlos" endereco="Rua Segura N 987" tipoCozinha="brasileira"
+
+eid4=criarEmpresa tipoEmpresa="restaurante"  dono=${id2} nome="Pastelaria do Carlos" endereco="Rua Divertida N 1973" tipoCozinha="brasileira"
+
+expectError "Usuario nao pode criar uma empresa" criarEmpresa tipoEmpresa="restaurante"  dono=${id1} nome="Restaurante do Lucas" endereco="Rua Amigavel N 22" tipoCozinha="brasileira"
+
+expectError "Usuario nao pode criar uma empresa" getEmpresasDoUsuario idDono=${id1}
+expect "{[[Pastelaria do Carlos, Rua Segura N 987], [Sushi do Carlos, Rua Legal N 654], [Pastelaria do Carlos, Rua Divertida N 1973]]}" getEmpresasDoUsuario idDono=${id2}
+expect "{[]}" getEmpresasDoUsuario idDono=${id3}
+
+eid3=criarEmpresa tipoEmpresa="restaurante"  dono=${id3} nome="Sorveteria do Roberto" endereco="Rua Segura N 987" tipoCozinha="brasileira"
+
+expect "Sorveteria do Roberto" getAtributoEmpresa empresa=${eid3} atributo="nome"
+expect "Rua Segura N 987" getAtributoEmpresa empresa=${eid3} atributo="endereco"
+expect "brasileira" getAtributoEmpresa empresa=${eid3} atributo="tipoCozinha"
+expect "RobertoDono" getAtributoEmpresa empresa=${eid3} atributo="dono"
+expectError "Atributo invalido" getAtributoEmpresa empresa=${eid3} atributo="vizinhos"
+expectError "Atributo invalido" getAtributoEmpresa empresa=${eid3} atributo=""
+expectError "Empresa nao cadastrada" getAtributoEmpresa empresa=9999 atributo="nome"
+expectError "Empresa nao cadastrada" getAtributoEmpresa empresa=9999 atributo=""
+expectError "Atributo invalido" getAtributoEmpresa empresa=${eid3} atributo=  
+
+expect ${eid1} getIdEmpresa idDono=${id2} nome="Pastelaria do Carlos" indice=0
+expect ${eid4} getIdEmpresa idDono=${id2} nome="Pastelaria do Carlos" indice=1
+expect ${eid2} getIdEmpresa idDono=${id2} nome="Sushi do Carlos" indice=0
+expectError "Indice maior que o esperado" getIdEmpresa idDono=${id2} nome="Pastelaria do Carlos" indice=2
+expectError "Nao existe empresa com esse nome" getIdEmpresa idDono=${id2} nome="Sorveteria do Carlos" indice=0
+
+expectError "Nome invalido" getIdEmpresa idDono=${id2} nome=  indice=2
+expectError "Nome invalido" getIdEmpresa idDono=${id2} nome=""  indice=2
+expectError "Indice invalido" getIdEmpresa idDono=${id2} nome="Pastelaria do Carlos" indice=-1
+
+encerrarSistema
+quit
