@@ -21,13 +21,6 @@ PowerShell
 
 	java -cp "lib/easyaccept.jar;." easyaccept.EasyAccept br.ufal.ic.myfood.Facade tests/us1_1.txt
 	
-3. Execução em Lote (Todos os Testes)
-Para verificar o projeto completo de uma só vez:
-
-PowerShell
-Get-ChildItem tests/*.txt | ForEach-Object { java -cp "lib/easyaccept.jar;." br.ufal.ic.myfood.Main "tests/$($_.Name)" }
-[!IMPORTANT]
-Nota sobre a Classe Main: Para rodar os testes em sequência (Passo 3), verifique se a classe Main está configurada para receber os argumentos dos testes. Caso o programa não execute como esperado, certifique-se de descomentar o bloco de código específico para automação de testes dentro de src/br/ufal/ic/myfood/Main.java.
 
 🛠️ Tecnologias e Conceitos
 Linguagem: Java
