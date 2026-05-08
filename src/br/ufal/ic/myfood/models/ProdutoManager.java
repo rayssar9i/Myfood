@@ -30,9 +30,7 @@ public class ProdutoManager implements Serializable {
         this.proximoId = 1;
     }
 
-    // -------------------------------------------------------------------------
     // CRIAÇÃO E EDIÇÃO
-    // -------------------------------------------------------------------------
 
     /**
      * Cria um novo produto para uma empresa.
@@ -45,11 +43,10 @@ public class ProdutoManager implements Serializable {
      *
      * @return ID sequencial do produto criado
      */
-    public int criarProduto(int empresaId, String nome, float valor,
-                            String categoria) throws Exception {
+    public int criarProduto(int empresaId, String nome, float valor,String categoria) throws Exception {
 
-        if (nome     == null || nome.isEmpty())     throw new Exception("Nome invalido");
-        if (valor    <  0)                          throw new Exception("Valor invalido");
+        if (nome  == null || nome.isEmpty())  throw new Exception("Nome invalido");
+        if (valor <  0)  throw new Exception("Valor invalido");
         if (categoria == null || categoria.isEmpty()) throw new Exception("Categoria invalido");
 
         // Nome deve ser único dentro da mesma empresa
@@ -68,11 +65,10 @@ public class ProdutoManager implements Serializable {
      *
      * Mesmas validações de criarProduto + verificação de existência do produto.
      */
-    public void editarProduto(int produtoId, String nome, float valor,
-                              String categoria) throws Exception {
+    public void editarProduto(int produtoId, String nome, float valor, String categoria) throws Exception {
 
-        if (nome     == null || nome.isEmpty())     throw new Exception("Nome invalido");
-        if (valor    <  0)                          throw new Exception("Valor invalido");
+        if (nome == null || nome.isEmpty())  throw new Exception("Nome invalido");
+        if (valor  <  0)  throw new Exception("Valor invalido");
         if (categoria == null || categoria.isEmpty()) throw new Exception("Categoria invalido");
 
         Produto produto = buscarPorId(produtoId);
@@ -84,10 +80,8 @@ public class ProdutoManager implements Serializable {
         produto.setCategoria(categoria);
     }
 
-    // -------------------------------------------------------------------------
+    
     // CONSULTAS
-    // -------------------------------------------------------------------------
-
     /**
      * Retorna o valor de um atributo de um produto, buscado pelo nome + empresa.
      *
@@ -95,8 +89,7 @@ public class ProdutoManager implements Serializable {
      * O atributo "empresa" retorna o NOME da empresa (resolve via EmpresaManager).
      * O atributo "valor" é formatado com 2 casas decimais (ex: "4.40", não "4.4").
      */
-    public String getProduto(String nome, int empresaId, String atributo,
-                             EmpresaManager empresaManager) throws Exception {
+    public String getProduto(String nome, int empresaId, String atributo, EmpresaManager empresaManager) throws Exception {
 
         Produto produto = produtos.stream()
                 .filter(p -> p.getEmpresaId() == empresaId && p.getNome().equals(nome))
@@ -126,8 +119,7 @@ public class ProdutoManager implements Serializable {
      * Formato de saída: {[nome1, nome2]} ou {[]} se a empresa não tiver produtos.
      * Lança exceção se a empresa não existir.
      */
-    public String listarProdutos(int empresaId,
-                                 EmpresaManager empresaManager) throws Exception {
+    public String listarProdutos(int empresaId, EmpresaManager empresaManager) throws Exception {
 
         if (empresaManager.buscarPorId(empresaId) == null) {
             throw new Exception("Empresa nao encontrada");
@@ -141,10 +133,8 @@ public class ProdutoManager implements Serializable {
         return "{[" + String.join(", ", nomes) + "]}";
     }
 
-    // -------------------------------------------------------------------------
     // BUSCAS (usadas por outros managers)
-    // -------------------------------------------------------------------------
-
+    
     /**
      * Busca produto pelo ID. Retorna null se não encontrado.
      * Usado por PedidoManager para validar/recuperar produtos.

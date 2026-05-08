@@ -25,25 +25,25 @@ public class Produto implements Serializable {
     private int empresaId;
 
     public Produto(int id, String nome, float valor, String categoria, int empresaId) {
-        this.id        = id;
-        this.nome      = nome;
-        this.valor     = valor;
+        this.id  = id;
+        this.nome = nome;
+        this.valor  = valor;
         this.categoria = categoria;
         this.empresaId = empresaId;
     }
 
     // --- Getters e Setters ---
 
-    public int    getId()          { return id; }
+    public int getId(){ return id; }
 
-    public String getNome()        { return nome; }
-    public void   setNome(String nome) { this.nome = nome; }
+    public String getNome()  { return nome; }
+    public void  setNome(String nome) { this.nome = nome; }
 
-    public float  getValor()       { return valor; }
-    public void   setValor(float valor) { this.valor = valor; }
+    public float getValor() { return valor; }
+    public void  setValor(float valor) { this.valor = valor; }
 
-    public String getCategoria()   { return categoria; }
-    public void   setCategoria(String categoria) { this.categoria = categoria; }
+    public String getCategoria()  { return categoria; }
+    public void setCategoria(String categoria) { this.categoria = categoria; }
 
-    public int    getEmpresaId()   { return empresaId; }
+    public int getEmpresaId() { return empresaId; }
 }

@@ -21,13 +21,10 @@ public class EmpresaManager implements Serializable {
         this.proximoId = 1;
     }
 
-    // -------------------------------------------------------------------------
+   
     // CRIAÇÃO — RESTAURANTE
-    // -------------------------------------------------------------------------
 
-    public int criarEmpresa(String tipoEmpresa, String donoId, String nome,
-                            String endereco, String tipoCozinha,
-                            Usuario dono) throws Exception {
+    public int criarEmpresa(String tipoEmpresa, String donoId, String nome,String endereco, String tipoCozinha,Usuario dono) throws Exception {
 
         validarPermissaoDono(dono);
         validarTipoEmpresa(tipoEmpresa);
@@ -39,13 +36,10 @@ public class EmpresaManager implements Serializable {
         return proximoId++;
     }
 
-    // -------------------------------------------------------------------------
+    
     // CRIAÇÃO — MERCADO
-    // -------------------------------------------------------------------------
-
-    public int criarEmpresaMercado(String tipoEmpresa, String donoId, String nome,
-                                   String endereco, String abre, String fecha,
-                                   String tipoMercado, Usuario dono) throws Exception {
+    
+    public int criarEmpresaMercado(String tipoEmpresa, String donoId, String nome,String endereco, String abre, String fecha,String tipoMercado, Usuario dono) throws Exception {
 
         validarPermissaoDono(dono);
         validarTipoEmpresa(tipoEmpresa);
@@ -61,13 +55,9 @@ public class EmpresaManager implements Serializable {
         return proximoId++;
     }
 
-    // -------------------------------------------------------------------------
     // CRIAÇÃO — FARMACIA
-    // -------------------------------------------------------------------------
 
-    public int criarEmpresaFarmacia(String tipoEmpresa, String donoId, String nome,
-                                    String endereco, boolean aberto24Horas,
-                                    int numeroFuncionarios, Usuario dono) throws Exception {
+    public int criarEmpresaFarmacia(String tipoEmpresa, String donoId, String nome,String endereco, boolean aberto24Horas,int numeroFuncionarios, Usuario dono) throws Exception {
 
         validarPermissaoDono(dono);
         validarTipoEmpresa(tipoEmpresa);
@@ -79,9 +69,9 @@ public class EmpresaManager implements Serializable {
         return proximoId++;
     }
 
-    // -------------------------------------------------------------------------
+    
     // ALTERAÇÃO DE FUNCIONAMENTO (Mercado)
-    // -------------------------------------------------------------------------
+    
 
     public void alterarFuncionamento(int mercadoId, String abre, String fecha) throws Exception {
         Empresa empresa = buscarPorId(mercadoId);
@@ -96,9 +86,8 @@ public class EmpresaManager implements Serializable {
         empresa.setFecha(fecha);
     }
 
-    // -------------------------------------------------------------------------
+    
     // CONSULTAS
-    // -------------------------------------------------------------------------
 
     public String getEmpresasDoUsuario(String donoId, Usuario dono) throws Exception {
         if (dono.getCpf() == null || dono.getCpf().isEmpty()) {
@@ -121,7 +110,7 @@ public class EmpresaManager implements Serializable {
 
     public int getIdEmpresa(String donoId, String nome, int indice) throws Exception {
         if (nome == null || nome.isEmpty()) throw new Exception("Nome invalido");
-        if (indice < 0)                     throw new Exception("Indice invalido");
+        if (indice < 0) throw new Exception("Indice invalido");
 
         List<Empresa> encontradas = empresas.stream()
                 .filter(e -> e.getDonoId().equals(donoId) && e.getNome().equals(nome))
@@ -133,8 +122,7 @@ public class EmpresaManager implements Serializable {
         return encontradas.get(indice).getId();
     }
 
-    public String getAtributoEmpresa(int empresaId, String atributo,
-                                     UsuarioManager usuarioManager) throws Exception {
+    public String getAtributoEmpresa(int empresaId, String atributo, UsuarioManager usuarioManager) throws Exception {
 
         Empresa empresa = buscarPorId(empresaId);
         if (empresa == null) throw new Exception("Empresa nao cadastrada");
@@ -142,19 +130,20 @@ public class EmpresaManager implements Serializable {
         if (atributo == null || atributo.isEmpty()) throw new Exception("Atributo invalido");
 
         switch (atributo.toLowerCase()) {
-            case "nome":        return empresa.getNome();
-            case "endereco":    return empresa.getEndereco();
-            case "tipocozinha": return empresa.getTipoCozinha();
+            case "nome":return empresa.getNome();
+            case "endereco":return empresa.getEndereco();
+            case "tipocozinha":return empresa.getTipoCozinha();
             case "dono":
                 Usuario dono = usuarioManager.buscarPorId(empresa.getDonoId());
                 return dono != null ? dono.getNome() : "";
+
             // Mercado
-            case "abre":        return empresa.getAbre();
-            case "fecha":       return empresa.getFecha();
+            case "abre":return empresa.getAbre();
+            case "fecha": return empresa.getFecha();
             case "tipomercado": return empresa.getTipoMercado();
             // Farmacia
-            case "aberto24horas":        return String.valueOf(empresa.isAberto24Horas());
-            case "numerofuncionarios":   return String.valueOf(empresa.getNumeroFuncionarios());
+            case "aberto24horas": return String.valueOf(empresa.isAberto24Horas());
+            case "numerofuncionarios": return String.valueOf(empresa.getNumeroFuncionarios());
             default:
                 throw new Exception("Atributo invalido");
         }
@@ -167,10 +156,8 @@ public class EmpresaManager implements Serializable {
                 .orElse(null);
     }
 
-    // -------------------------------------------------------------------------
     // VALIDAÇÕES INTERNAS
-    // -------------------------------------------------------------------------
-
+    
     private void validarPermissaoDono(Usuario dono) throws Exception {
         if (dono.getCpf() == null || dono.getCpf().isEmpty()) {
             throw new Exception("Usuario nao pode criar uma empresa");

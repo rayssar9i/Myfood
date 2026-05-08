@@ -41,50 +41,49 @@ public class Usuario implements Serializable {
         this(nome, email, senha, endereco, cpf, null, null);
     }
 
-    public Usuario(String nome, String email, String senha, String endereco,
-                   String cpf, String veiculo, String placa) {
-        this.nome              = nome;
-        this.email             = email;
-        this.senha             = senha;
-        this.endereco          = endereco;
-        this.cpf               = cpf;
-        this.veiculo           = veiculo;
-        this.placa             = placa;
-        this.id                = UUID.randomUUID().toString();
+    public Usuario(String nome, String email, String senha, String endereco, String cpf, String veiculo, String placa) {
+        this.nome  = nome;
+        this.email  = email;
+        this.senha  = senha;
+        this.endereco  = endereco;
+        this.cpf  = cpf;
+        this.veiculo = veiculo;
+        this.placa  = placa;
+        this.id   = UUID.randomUUID().toString();
         this.empresasVinculadas = new ArrayList<>();
     }
 
     // --- Tipo helpers ---
 
-    public boolean isDono()       { return cpf != null && !cpf.isEmpty(); }
+    public boolean isDono() { return cpf != null && !cpf.isEmpty(); }
     public boolean isEntregador() { return veiculo != null && !veiculo.isEmpty(); }
-    public boolean isCliente()    { return !isDono() && !isEntregador(); }
+    public boolean isCliente() { return !isDono() && !isEntregador(); }
 
     // --- Getters e Setters ---
 
-    public String getId()       { return id; }
+    public String getId() { return id; }
     public void   setId(String id) { this.id = id; }
 
-    public String getNome()     { return nome; }
-    public void   setNome(String nome) { this.nome = nome; }
+    public String getNome()  { return nome; }
+    public void  setNome(String nome) { this.nome = nome; }
 
-    public String getEmail()    { return email; }
-    public void   setEmail(String email) { this.email = email; }
+    public String getEmail() { return email; }
+    public void  setEmail(String email) { this.email = email; }
 
-    public String getSenha()    { return senha; }
-    public void   setSenha(String senha) { this.senha = senha; }
+    public String getSenha() { return senha; }
+    public void  setSenha(String senha) { this.senha = senha; }
 
     public String getEndereco() { return endereco; }
-    public void   setEndereco(String endereco) { this.endereco = endereco; }
+    public void  setEndereco(String endereco) { this.endereco = endereco; }
 
-    public String getCpf()      { return cpf; }
-    public void   setCpf(String cpf) { this.cpf = cpf; }
+    public String getCpf()  { return cpf; }
+    public void setCpf(String cpf) { this.cpf = cpf; }
 
     public String getVeiculo()  { return veiculo; }
-    public void   setVeiculo(String veiculo) { this.veiculo = veiculo; }
+    public void setVeiculo(String veiculo) { this.veiculo = veiculo; }
 
-    public String getPlaca()    { return placa; }
-    public void   setPlaca(String placa) { this.placa = placa; }
+    public String getPlaca() { return placa; }
+    public void setPlaca(String placa) { this.placa = placa; }
 
     public List<Integer> getEmpresasVinculadas() { return empresasVinculadas; }
 

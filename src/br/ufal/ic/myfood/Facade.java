@@ -17,9 +17,7 @@ public class Facade {
         return state;
     }
 
-    // =========================================================================
     // CONTROLE DO SISTEMA
-    // =========================================================================
 
     public void zerarSistema() {
         SystemState.apagarArquivo();
@@ -30,10 +28,7 @@ public class Facade {
         getState().salvar();
     }
 
-    // =========================================================================
     // US1 — USUÁRIOS
-    // =========================================================================
-
     public String getAtributoUsuario(String id, String atributo) throws Exception {
         return getState().usuarioManager.getAtributoUsuario(id, atributo);
     }
@@ -61,9 +56,7 @@ public class Facade {
         return getState().usuarioManager.login(email, senha);
     }
 
-    // =========================================================================
     // US2 — EMPRESAS (restaurante)
-    // =========================================================================
 
     /** Cria restaurante. */
     public int criarEmpresa(String tipoEmpresa, String dono, String nome,
@@ -89,9 +82,7 @@ public class Facade {
                 empresa, atributo, getState().usuarioManager);
     }
 
-    // =========================================================================
     // US5 — MERCADOS
-    // =========================================================================
 
     /** Cria mercado (7 parâmetros: inclui abre, fecha, tipoMercado). */
     public int criarEmpresa(String tipoEmpresa, String dono, String nome, String endereco,
@@ -106,9 +97,7 @@ public class Facade {
         getState().empresaManager.alterarFuncionamento(mercado, abre, fecha);
     }
 
-    // =========================================================================
     // US6 — FARMACIAS
-    // =========================================================================
 
     /** Cria farmacia (6 parâmetros: inclui aberto24Horas, numeroFuncionarios). */
     public int criarEmpresa(String tipoEmpresa, String dono, String nome, String endereco,
@@ -118,10 +107,7 @@ public class Facade {
         return getState().empresaManager.criarEmpresaFarmacia(
                 tipoEmpresa, dono, nome, endereco, aberto24Horas, numeroFuncionarios, donoObj);
     }
-
-    // =========================================================================
     // US3 — PRODUTOS
-    // =========================================================================
 
     public int criarProduto(int empresa, String nome, float valor,
                             String categoria) throws Exception {
@@ -143,9 +129,7 @@ public class Facade {
                 empresa, getState().empresaManager);
     }
 
-    // =========================================================================
     // US4 — PEDIDOS
-    // =========================================================================
 
     public int criarPedido(String cliente, int empresa) throws Exception {
         Usuario clienteObj = getState().usuarioManager.buscarPorId(cliente);
@@ -179,9 +163,7 @@ public class Facade {
         return getState().pedidoManager.getNumeroPedido(cliente, empresa, indice);
     }
 
-    // =========================================================================
     // US7 — ENTREGADORES
-    // =========================================================================
 
     public void cadastrarEntregador(int empresa, String entregador) throws Exception {
         getState().usuarioManager.cadastrarEntregador(empresa, entregador);
@@ -195,9 +177,7 @@ public class Facade {
         return getState().usuarioManager.getEmpresas(entregador, getState().empresaManager);
     }
 
-    // =========================================================================
     // US8 — SISTEMA DE ENTREGAS
-    // =========================================================================
 
     public void liberarPedido(int numero) throws Exception {
         getState().pedidoManager.liberarPedido(numero);
@@ -235,32 +215,37 @@ public class Facade {
         getState().entregaManager.entregar(entrega, getState().pedidoManager);
     }
 
-    // =========================================================================
     // MAIN — executa todos os testes EasyAccept
-    // =========================================================================
 
     public static void main(String[] args) {
         // US1
         easyaccept.EasyAccept.main(new String[]{"br.ufal.ic.myfood.Facade", "tests/us1_1.txt"});
         easyaccept.EasyAccept.main(new String[]{"br.ufal.ic.myfood.Facade", "tests/us1_2.txt"});
+        
         // US2
         easyaccept.EasyAccept.main(new String[]{"br.ufal.ic.myfood.Facade", "tests/us2_1.txt"});
         easyaccept.EasyAccept.main(new String[]{"br.ufal.ic.myfood.Facade", "tests/us2_2.txt"});
+        
         // US3
         easyaccept.EasyAccept.main(new String[]{"br.ufal.ic.myfood.Facade", "tests/us3_1.txt"});
         easyaccept.EasyAccept.main(new String[]{"br.ufal.ic.myfood.Facade", "tests/us3_2.txt"});
+        
         // US4
         easyaccept.EasyAccept.main(new String[]{"br.ufal.ic.myfood.Facade", "tests/us4_1.txt"});
         easyaccept.EasyAccept.main(new String[]{"br.ufal.ic.myfood.Facade", "tests/us4_2.txt"});
+        
         // US5
         easyaccept.EasyAccept.main(new String[]{"br.ufal.ic.myfood.Facade", "tests/us5_1.txt"});
         easyaccept.EasyAccept.main(new String[]{"br.ufal.ic.myfood.Facade", "tests/us5_2.txt"});
+        
         // US6
         easyaccept.EasyAccept.main(new String[]{"br.ufal.ic.myfood.Facade", "tests/us6_1.txt"});
         easyaccept.EasyAccept.main(new String[]{"br.ufal.ic.myfood.Facade", "tests/us6_2.txt"});
+        
         // US7
         easyaccept.EasyAccept.main(new String[]{"br.ufal.ic.myfood.Facade", "tests/us7_1.txt"});
         easyaccept.EasyAccept.main(new String[]{"br.ufal.ic.myfood.Facade", "tests/us7_2.txt"});
+        
         // US8
         easyaccept.EasyAccept.main(new String[]{"br.ufal.ic.myfood.Facade", "tests/us8_1.txt"});
         easyaccept.EasyAccept.main(new String[]{"br.ufal.ic.myfood.Facade", "tests/us8_2.txt"});

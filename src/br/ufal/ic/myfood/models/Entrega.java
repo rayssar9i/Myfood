@@ -12,20 +12,20 @@ public class Entrega implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private int    id;
-    private int    pedidoNumero;
+    private int id;
+    private int pedidoNumero;
     private String entregadorId;
     private String destino;
 
     public Entrega(int id, int pedidoNumero, String entregadorId, String destino) {
-        this.id            = id;
-        this.pedidoNumero  = pedidoNumero;
-        this.entregadorId  = entregadorId;
-        this.destino       = destino;
+        this.id  = id;
+        this.pedidoNumero = pedidoNumero;
+        this.entregadorId = entregadorId;
+        this.destino   = destino;
     }
 
-    public int    getId()           { return id; }
-    public int    getPedidoNumero() { return pedidoNumero; }
+    public int getId() { return id; }
+    public int getPedidoNumero() { return pedidoNumero; }
     public String getEntregadorId() { return entregadorId; }
-    public String getDestino()      { return destino; }
+    public String getDestino() { return destino; }
 }

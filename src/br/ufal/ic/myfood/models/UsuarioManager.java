@@ -22,19 +22,17 @@ public class UsuarioManager implements Serializable {
         this.usuarioList = new ArrayList<>();
     }
 
-    // -------------------------------------------------------------------------
     // CRIAÇÃO
-    // -------------------------------------------------------------------------
+    // 
 
     /** Cria cliente (sem cpf) ou dono (com cpf). */
-    public void criarUsuario(String nome, String email, String senha,
-                             String endereco, String cpf) throws Exception {
+    public void criarUsuario(String nome, String email, String senha, String endereco, String cpf) throws Exception {
 
-        if (nome     == null || nome.isEmpty())     throw new Exception("Nome invalido");
-        if (email    == null || email.isEmpty())    throw new Exception("Email invalido");
-        if (senha    == null || senha.isEmpty())    throw new Exception("Senha invalido");
+        if (nome  == null || nome.isEmpty()) throw new Exception("Nome invalido");
+        if (email == null || email.isEmpty()) throw new Exception("Email invalido");
+        if (senha == null || senha.isEmpty()) throw new Exception("Senha invalido");
         if (endereco == null || endereco.isEmpty()) throw new Exception("Endereco invalido");
-        if (!email.contains("@"))                   throw new Exception("Email invalido");
+        if (!email.contains("@"))  throw new Exception("Email invalido");
 
         if (cpf != null && !cpf.isEmpty() && cpf.length() != 14) {
             throw new Exception("CPF invalido");
@@ -48,16 +46,15 @@ public class UsuarioManager implements Serializable {
     }
 
     /** Cria entregador (com veiculo e placa). */
-    public void criarEntregador(String nome, String email, String senha,
-                                String endereco, String veiculo, String placa) throws Exception {
+    public void criarEntregador(String nome, String email, String senha, String endereco, String veiculo, String placa) throws Exception {
 
-        if (nome     == null || nome.isEmpty())     throw new Exception("Nome invalido");
-        if (email    == null || email.isEmpty())    throw new Exception("Email invalido");
-        if (senha    == null || senha.isEmpty())    throw new Exception("Senha invalido");
+        if (nome == null || nome.isEmpty()) throw new Exception("Nome invalido");
+        if (email == null || email.isEmpty()) throw new Exception("Email invalido");
+        if (senha == null || senha.isEmpty())  throw new Exception("Senha invalido");
         if (endereco == null || endereco.isEmpty()) throw new Exception("Endereco invalido");
-        if (!email.contains("@"))                   throw new Exception("Email invalido");
+        if (!email.contains("@"))  throw new Exception("Email invalido");
         if (veiculo  == null || veiculo.isEmpty())  throw new Exception("Veiculo invalido");
-        if (placa    == null || placa.isEmpty())    throw new Exception("Placa invalido");
+        if (placa == null || placa.isEmpty()) throw new Exception("Placa invalido");
 
         // Placa uniqueness checked before email uniqueness (test ordering requirement)
         for (Usuario u : usuarioList) {
@@ -70,9 +67,7 @@ public class UsuarioManager implements Serializable {
         usuarioList.add(new Usuario(nome, email, senha, endereco, null, veiculo, placa));
     }
 
-    // -------------------------------------------------------------------------
     // AUTENTICAÇÃO
-    // -------------------------------------------------------------------------
 
     public String login(String email, String senha) throws Exception {
         if (email == null || email.isEmpty()) throw new Exception("Login ou senha invalidos");
@@ -86,22 +81,20 @@ public class UsuarioManager implements Serializable {
         throw new Exception("Login ou senha invalidos");
     }
 
-    // -------------------------------------------------------------------------
     // CONSULTAS
-    // -------------------------------------------------------------------------
 
     public String getAtributoUsuario(String id, String atributo) throws Exception {
         for (Usuario u : usuarioList) {
             if (u.getId().equals(id)) {
                 switch (atributo.toLowerCase()) {
-                    case "nome":     return u.getNome();
-                    case "email":    return u.getEmail();
-                    case "senha":    return u.getSenha();
+                    case "nome":  return u.getNome();
+                    case "email": return u.getEmail();
+                    case "senha": return u.getSenha();
                     case "endereco": return u.getEndereco();
-                    case "cpf":      return u.getCpf();
+                    case "cpf": return u.getCpf();
                     case "veiculo":  return u.getVeiculo();
-                    case "placa":    return u.getPlaca();
-                    default:         throw new Exception("Atributo invalido");
+                    case "placa": return u.getPlaca();
+                    default: throw new Exception("Atributo invalido");
                 }
             }
         }
@@ -115,9 +108,7 @@ public class UsuarioManager implements Serializable {
                 .orElse(null);
     }
 
-    // -------------------------------------------------------------------------
     // ENTREGADORES
-    // -------------------------------------------------------------------------
 
     /** Cadastra um entregador a uma empresa. */
     public void cadastrarEntregador(int empresaId, String entregadorId) throws Exception {

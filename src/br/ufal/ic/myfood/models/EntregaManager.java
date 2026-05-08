@@ -27,15 +27,14 @@ public class EntregaManager implements Serializable {
     private Set<String> entregadoresOcupados;
 
     public EntregaManager() {
-        this.entregas             = new ArrayList<>();
-        this.proximoId            = 1;
+        this.entregas    = new ArrayList<>();
+        this.proximoId   = 1;
         this.entregadoresOcupados = new HashSet<>();
     }
 
-    // -------------------------------------------------------------------------
+    
     // CRIAÇÃO
-    // -------------------------------------------------------------------------
-
+   
     /**
      * Cria uma entrega para um pedido.
      * Ordem de validação:
@@ -43,10 +42,7 @@ public class EntregaManager implements Serializable {
      *   2. Entregador é válido e trabalha para a empresa do pedido
      *   3. Entregador não está ocupado
      */
-    public int criarEntrega(int pedidoNumero, String entregadorId, String destino,
-                            PedidoManager pedidoManager,
-                            UsuarioManager usuarioManager,
-                            EmpresaManager empresaManager) throws Exception {
+    public int criarEntrega(int pedidoNumero, String entregadorId, String destino, PedidoManager pedidoManager, UsuarioManager usuarioManager,EmpresaManager empresaManager) throws Exception {
 
         Pedido pedido = pedidoManager.buscarPorNumero(pedidoNumero);
         if (pedido == null || !pedido.isPronto()) {
@@ -75,15 +71,11 @@ public class EntregaManager implements Serializable {
         return proximoId++;
     }
 
-    // -------------------------------------------------------------------------
+    
     // CONSULTAS
-    // -------------------------------------------------------------------------
+    
 
-    public String getEntrega(int entregaId, String atributo,
-                             PedidoManager pedidoManager,
-                             UsuarioManager usuarioManager,
-                             EmpresaManager empresaManager,
-                             ProdutoManager produtoManager) throws Exception {
+    public String getEntrega(int entregaId, String atributo, PedidoManager pedidoManager, UsuarioManager usuarioManager,  EmpresaManager empresaManager, ProdutoManager produtoManager) throws Exception {
 
         if (atributo == null || atributo.isEmpty()) throw new Exception("Atributo invalido");
 
@@ -134,9 +126,9 @@ public class EntregaManager implements Serializable {
                 .orElseThrow(() -> new Exception("Nao existe entrega com esse id"));
     }
 
-    // -------------------------------------------------------------------------
+   
     // CONCLUSÃO
-    // -------------------------------------------------------------------------
+
 
     /** Marca o pedido como "entregue" e libera o entregador. */
     public void entregar(int entregaId, PedidoManager pedidoManager) throws Exception {
@@ -149,9 +141,7 @@ public class EntregaManager implements Serializable {
         entregadoresOcupados.remove(entrega.getEntregadorId());
     }
 
-    // -------------------------------------------------------------------------
     // BUSCA INTERNA
-    // -------------------------------------------------------------------------
 
     private Entrega buscarPorId(int id) {
         return entregas.stream()

@@ -20,9 +20,8 @@ public class PedidoManager implements Serializable {
         this.proximoNumero = 1;
     }
 
-    // -------------------------------------------------------------------------
+    
     // CRIAÇÃO
-    // -------------------------------------------------------------------------
 
     public int criarPedido(String clienteId, int empresaId, Usuario cliente) throws Exception {
 
@@ -43,12 +42,10 @@ public class PedidoManager implements Serializable {
         return proximoNumero++;
     }
 
-    // -------------------------------------------------------------------------
+    
     // PRODUTOS
-    // -------------------------------------------------------------------------
 
-    public void adicionarProduto(int numeroPedido, int produtoId,
-                                 ProdutoManager produtoManager) throws Exception {
+    public void adicionarProduto(int numeroPedido, int produtoId, ProdutoManager produtoManager) throws Exception {
 
         Pedido pedido = buscarPorNumero(numeroPedido);
         if (pedido == null) throw new Exception("Nao existe pedido em aberto");
@@ -65,8 +62,7 @@ public class PedidoManager implements Serializable {
         pedido.adicionarProduto(produtoId);
     }
 
-    public void removerProduto(int numeroPedido, String nomeProduto,
-                               ProdutoManager produtoManager) throws Exception {
+    public void removerProduto(int numeroPedido, String nomeProduto,ProdutoManager produtoManager) throws Exception {
 
         if (nomeProduto == null || nomeProduto.isEmpty()) {
             throw new Exception("Produto invalido");
@@ -87,10 +83,7 @@ public class PedidoManager implements Serializable {
         pedido.removerProduto(produto.getId());
     }
 
-    // -------------------------------------------------------------------------
     // ESTADO
-    // -------------------------------------------------------------------------
-
     public void fecharPedido(int numeroPedido) throws Exception {
         Pedido pedido = buscarPorNumero(numeroPedido);
         if (pedido == null) throw new Exception("Pedido nao encontrado");
@@ -151,14 +144,9 @@ public class PedidoManager implements Serializable {
         return candidatos.get(0).getNumero();
     }
 
-    // -------------------------------------------------------------------------
     // CONSULTAS
-    // -------------------------------------------------------------------------
 
-    public String getPedidos(int numeroPedido, String atributo,
-                             UsuarioManager usuarioManager,
-                             EmpresaManager empresaManager,
-                             ProdutoManager produtoManager) throws Exception {
+    public String getPedidos(int numeroPedido, String atributo, UsuarioManager usuarioManager, EmpresaManager empresaManager, ProdutoManager produtoManager) throws Exception {
 
         if (atributo == null || atributo.isEmpty()) throw new Exception("Atributo invalido");
 
